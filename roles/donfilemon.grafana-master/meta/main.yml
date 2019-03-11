@@ -1,0 +1,18 @@
+galaxy_info:
+  author: Don Filemon ( filex5 )
+  description: Simple role for installation grafana on ubuntu 
+  company: robertfil.pl & PB-IT (ThinkTankOPS)
+
+  # If the issue tracker for your role is not on github, uncomment the
+  # next line and provide a value
+  # issue_tracker_url: http://example.com/issue/tracker
+
+  license: license MIT
+
+  min_ansible_version: 2.4
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - xenial
+    - bionic

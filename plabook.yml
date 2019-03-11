@@ -1,0 +1,13 @@
+- name: Instalacja Grafany
+  hosts: test
+  become: true
+  #roles:
+  #  - donfilemon.grafana-master
+  tasks:
+    - name: instalacja Java Open-JDK
+      yum:
+        name: "{{ packages }}"
+      vars:
+        packages:
+          - java-1.8.0-openjdk
+          - java-1.8.0-openjdk-devel
