@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="PL-pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body><!--]>-->
+<div style="text-align:center;font-size:11px;font-family:arial;background-color:black;color:white">Je&#347;li jeste&#347; w&#322;a&#347;cicielem tej strony, mo&#380;esz wy&#322;&#261;czy&#263; reklam&#281; poni&#380;ej zmieniaj&#261;c pakiet na PRO lub VIP w panelu naszego <a style="color:grey" rel="nofollow" href="https://www.cba.pl/pl/oferta/hosting">hostingu</a> ju&#380; od 4z&#322;!</div>
+<div id="top_10">
+<!--googleoff: all--><!--noindex--><center><img usemap="#cba" src="https://www.cba.pl/cba1.jpg" alt=""/></center><map name="cba"><area shape="rect" coords="620,50,750,100" href="https://www.cba.pl/pl/oferta/strony-www" alt="Strony WWW" rel="nofollow"/><area shape="rect" coords="510,50,620,100" href="https://www.cba.pl/pl/oferta/vps" alt="Serwery VPS" rel="nofollow"/><area shape="rect" coords="410,50,510,100" href="https://www.cba.pl/pl/oferta/domeny" alt="Domeny" rel="nofollow"/><area shape="rect" coords="305,50,410,100" href="https://www.cba.pl/pl/oferta/hosting" alt="Hosting"/><area shape="rect" coords="0,0,750,100" href="https://www.cba.pl" alt="Darmowy Hosting CBA.pl" rel="nofollow"/></map><!--/noindex--><!--googleon: all-->
+</div>
+
+    <script src=""></script>
+    <header>
+    <h1>Don Filemon Blog </h1>
+        <p>Blog o Linuxie, administracji, i innych pierdołach.</p>
+    </header>
+    <nav>
+      <ul>
+          <li><a href="index.html">Arch</a></li>
+          <li><a href="news.html">Ubuntu Server</a></li>
+          <li><a href="contact.html">Ansible</a></li>
+          <li><a href="about.html">Ubuntu Server cd..</a></li>
+      </ul>
+        
+    </nav>
+    <main>
+       <article>
+          <h3>Instalacja Arch Linuxa</h3>
+          <p>Moja przygoda z instalacja archa.</p>
+          <br>
+          <p>Instalacja pod UEFI.</p>
+          <br>
+          <p>Na początku sprawdźmy nasze dyski żeby określić na którym urządzeniu chcemy stworzyć partycje i zainstalować Archa.</p>
+          <p>można się posłużyć 2 komendami (lsblk) - lista urządzeń blokowych lub (fdisk -l) polecenie wyświetla listę dysków.</p>
+           <br>
+          <img  src="Arch_instalacja/arch_blk.png" alt="lista urzadzeń">
+           <br>
+          <p>Dyski znajdują się w folderze /dev czyli device (z angielskiego urządzenia) są one numerowane alfabetycznie od a do z,</p>
+          <p>kiedy jesteśmy pewni jakiego dysku chcemy użyć pora utworzyć partycje za pomocą (cfdisk).</p>
+           <br>
+          <img src="Arch_instalacja/partycja001.png" alt="partycjonowanie">
+          <p>Utworzymy teraz 3 partycje 512mb dla gruba, 5gb na system, i 2.5gb dla urzytkownikow.</p>
+           <br>
+          <img src="Arch_instalacja/partycja002.png" alt="partycjonowanie">
+          <br>
+          <img src="Arch_instalacja/partycja003.png" alt="partycjonowanie">
+          <br>
+          <img src="Arch_instalacja/partycja004.png" alt="partycjonowanie">
+          <br>
+          <img src="Arch_instalacja/partycja005.png" alt="partycjonowanie">
+          <br>
+          <br>
+          <br>
+          <p>Sprawdzamy utworzone partycje polecaniami lsblk lub fdisk -l jak kto woli.</p>
+           <br>
+          <img src="Arch_instalacja/listapartycji001.png" alt="lista">
+          <br>
+          <img src="Arch_instalacja/listapartycji002.png" alt="lista">
+          <br>
+          <br>
+          <br>
+          <p>Tworzymy 3 systemy plików fat32 dla gruba za pomocą polecenia mkfs.fat -F32, ext4 dla systemu oraz użytkowników na 2 partycjach za pomocą mkfs.ext4. </p>
+           <br>
+          <img src="Arch_instalacja/system_plikow.png" alt="lista">
+           <br>
+          <p>Czas zamontować partycje w katalogu /mnt stworzyć folder /home, oraz zamontowanie go w odpowiednim miejscu.</p>
+           <br>
+          <img src="Arch_instalacja/montowanie.png" alt="mount">
+           <br>
+          <p>Zobaczmy jak się zamontowały nasze partycje poleceniem lsblk.</p>
+           <br>
+          <img src="Arch_instalacja/lista_mount.png" alt="mount">
+           <br>
+          <p>Czas na instalacje systemu za pomocą polecenia (pacstrap -i) nasza partycje na system zamontowaliśmy w /mnt wiec wskazujemy w tym miejscu ma się zainstalować system,</p>
+          <p> oraz pokazujemy mu że interesuje nas paczka base-devel.</p>
+           <br>
+          <img src="Arch_instalacja/installer001.png" alt="mount">
+           <br>
+          <p>Przeklikujemy enterem ponieważ chcemy wszystkie pakiety oraz na końcu potwierdzamy wpisując y.</p>
+           <br>
+          <img src="Arch_instalacja/potwierdz%20instalacje.png" alt="instalacja">
+           <br>
+          <p>Po instalacji powinnyśmy mięć takie okno.</p>
+          <img src="Arch_instalacja/koniecinstalacji.png" alt="instalacja">
+           <br>
+          <p>Generujemy fstab oraz odpalamy system w chroot za pomocą arch-chroot.</p>
+           <br>
+          <img src="Arch_instalacja/chroot.png" alt="instalacja">
+           <br>
+          <p>Czas ustawić opcje językowe otwieramy edytorem nano plik /etc/locale.gen i usuwamy komentarz (#) pl_PL.UTF-8 UTF-8.</p>
+           <br>
+          <img src="Arch_instalacja/opcjejezykowe001.png" alt="instalacja">
+           <br>
+          <p>Generujemy ustawienia języka, tworzymy dowiązanie symboliczne do strefy czasowej i ustawiamy zegar systemowy, po czym zajmujemy się nazwą hosta za pomocą echo.</p>
+           <br>
+          <img src="Arch_instalacja/konfiguracja001.png" alt="instalacja">
+           <br>
+          <p>Konfigurujemy plik hosts dla pętli zwrotnej.</p>
+           <br>
+          <img src="Arch_instalacja/hosts.png" alt="instalacja">
+           <br>
+          <p>Instalujemy NetworkManager, aby mieć możliwość konfiguracji sieci w naszym systemie.</p>
+           <br>
+          <img src="Arch_instalacja/networkmanager.png" alt="instalacja">
+           <br>
+          <p>Włączamy NetworkManager dla systemd by był włączony przy starcie systemu.</p>
+           <br>
+          <img src="Arch_instalacja/networkmanager2.png" alt="instalacja">
+           <br>
+          <p>Kolejną ważną kwestią jest zmiana hasła dla użytkownika root.</p>
+           <br>
+          <img src="Arch_instalacja/passwd.png" alt="instalacja">
+           <br>
+          <p>Instalujemy grub oraz efibootmng.</p>
+           <br>
+          <img src="Arch_instalacja/grub001.png" alt="instalacja">
+           <br>
+          <p>Tworzymy folder /boot/efi oraz montujemy tam nasza partycje 512mb z systemem plików fat32.</p>
+           <br>
+          <img src="Arch_instalacja/grub002.png" alt="instalacja">
+           <br>
+          <p>Instalujemy gruba, generujemy konfiguracje poleceniem grub-mkconfig, tworzymy katalog /boot/efi/EFI/BOOT</p>
+          <p> następnie kopiujemy tam plik jak na obrazku niżej zmieniając nazwę na podaną z dużej litery.</p>
+           <br>
+          <img src="Arch_instalacja/grub003.png" alt="instalacja">
+           <br>
+          <p>Tworzymy/edytujemy plik /boot/efi/startup.nsh wpisując co na obrazku pamietamy, aby używać \ do oznaczenia ścieżki. </p>
+           <br>
+          <img src="Arch_instalacja/grub004.png" alt="instalacja">
+           <br>
+          <p>wychodzimy z chroot, odmontujemy zamontowane partycje rekursywnie za pomoca (umount -R).</p>
+           <br>
+          <img src="Arch_instalacja/reboot.png" alt="instalacja">
+           <br>
+           <p>Logujemy sie do systemu jako root.</p>
+            <br>
+          <img src="Arch_instalacja/login.png" alt="instalacja">
+           <br>
+           <p>Dodajemy użytkownika ja dodałem urzytkownika (filemon) z flagami -m żeby stworzyć katalog użytkownika w /home,</p>
+           <p>flaga -s wybiera z jakiej powłoki chcemy korzystać -g dodaje grupę -G wheel dodaje konto do grupy wheel.</p>
+            <br>
+          <img src="Arch_instalacja/adduser.png" alt="instalacja">
+           <br>
+           <p>Czas na pozwolenie użytkownika z grupy wheel na korzystanie z sudo ale najpierw zmiana edytora dla polecenia visudo.</p>
+            <br>
+           <img src="Arch_instalacja/visudo001.png" alt="instalacja"><br>
+           <img src="Arch_instalacja/visudo002.png" alt="instalacja">
+            <br>
+           <p>Można teraz się wylogować i zmienić na utworzonego użytkownika, któremu można teraz podnosić uprawnienia za pomocą polecenia sudo.</p>
+            <br>
+           <img src="Arch_instalacja/sudouser.png" alt="instalacja">
+            <br>
+           <p>Czas na konfiguracje sieci za pomocą nmtui.</p>
+            <br>
+           <img src="Arch_instalacja/nmtui.png" alt="sieć">
+            <br>
+           <p>Nie mam zamiaru opisywał konfiguracji sieci u każdego może być inna.</p>
+            <br>
+           <img src="Arch_instalacja/nmtui2.png" alt="sieć">
+            <br>
+           <p>Sprawdzamy konfiguracje poleceniem (ip a).</p>
+            <br>
+           <img src="Arch_instalacja/nmtui3.png" alt="sieć">
+            <br>
+           <p>Zajmiemy się teraz Instalacja GUI, pakiet na niebiesko jest tylko w wypadku instalacji w virtualboxie.</p>
+            <br>
+           <img src="Arch_instalacja/gui1.png" alt="sieć">
+            <br>
+           <p>Dopiszmy konfiguracje, żeby xorg server wiedział, jakie GUI ma uruchomić my zainstalowaliśmy xfce4 oraz aby podczas startu systemu odpalał się menadżer okien,<br> następnie pozostało już tylko odpalić GUI za pomocą polecenia startx.</p>
+            <br>
+           <img src="Arch_instalacja/gui2.png" alt="sieć">
+           <p>Gratulację zainstalowałeś Archa wraz z GUI!!</p>
+            <br>
+           <img src="Arch_instalacja/gui3.png" alt="sieć">
+        
+          
+          
+          
+
+          
+          
+          
+       </article>
+        
+    </main>
+    <footer>
+        <p>Don Filemon Blog</p>
+    </footer>
+<!--]-->
+<div style="text-align:center;font-size:11px" class="cbalink"><a href="https://www.cba.pl/" title="darmowy hosting">Darmowy Hosting</a> CBA.PL<br/><br/></div>
+<script type="text/javascript" src="//a5.cba.pl/r1.js"></script>
+
+<div class="cumf_bt_form_wrapper" style="display:none">
+<form id="contact_us_mail_feedback" action="/oldTi9QvqM6ytokU9Q8ylQq" method="post">
+    <fieldset>
+        <!-- Form Name -->
+        <legend>Contact Us</legend>
+        <!-- Text input-->
+        <div class="cumf_bt_form-group">
+            <label class="col-md-4 cumf_bt_control-label" for="cumf_bt_name">name</label>
+            <div class="col-md-4">
+                <input id="cumf_bt_name" name="cumf_bt_name" type="text" placeholder="your name" class="cumf_bt_form-control cumf_bt_input-md" />
+                <span class="cumf_bt_help-block">Please enter your name</span>
+            </div>
+        </div>
+        <!-- Text input-->
+        <div class="cumf_bt_form-group">
+            <label class="col-md-4 cumf_bt_control-label" for="cumf_bt_email">your email</label>
+            <div class="col-md-4">
+                <input id="cumf_bt_email" name="cumf_bt_email" type="text" placeholder="enter your email" class="cumf_bt_form-control cumf_bt_input-md" />
+                <span class="cumf_bt_help-block">please enter your email</span>
+            </div>
+        </div>
+        <!-- Textarea -->
+        <div class="cumf_bt_form-group">
+            <label class="col-md-4 cumf_bt_control-label" for="cumf_bt_message">your message</label>
+            <div class="col-md-4">
+                <textarea class="cumf_bt_form-control" id="cumf_bt_message" name="cumf_bt_message">Message goes here</textarea>
+            </div>
+        </div>
+        <input type="submit" id="cumf_bt_submit" value="Send"/>
+    </fieldset>
+</form>
+</div>
+
+</body>
+</html>
+<!-- cba </body><!-->
