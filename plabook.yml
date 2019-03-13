@@ -28,7 +28,7 @@
     certbot_version: master
     certbot_keep_updated: true
     certbot_certs:
-      - email: janedoe@example.com
+      - email: kontakt@robertfil.pl
         domains:
           - robertfil.pl
   
