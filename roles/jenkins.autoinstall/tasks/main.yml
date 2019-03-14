@@ -1,0 +1,27 @@
+---
+# tasks file for jenkins.autoinstall
+- name: Install Java Open-JDK
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - java-1.8.0-openjdk
+      - java-1.8.0-openjdk-devel
+- name: Add repository for Jenkins
+  yum_repository:
+    name: jenkins
+    description: Jenkins Repository
+    baseurl: https://jenkins-ci.org/redhat/jenkins-ci.org.key
+    gpgkey: http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+    gpgcheck: yes
+- name: Install Nginx
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - jenkins
+- name: start Jenkins service
+  systemd:
+    name: jenkins
+    state: started
+    enabled: yes

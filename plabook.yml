@@ -2,18 +2,11 @@
   hosts: test
   become: true
   gather_facts: yes
-  tasks:
-    - name: Install Java Open-JDK
-      yum:
-        name: "{{ packages }}"
-      vars:
-        packages:
-          - java-1.8.0-openjdk
-          - java-1.8.0-openjdk-devel
+# Roles  
   roles:
     - ansible-role-certbot-master
     - nginx
-    
+# Vars
   vars:
     certbot_auto_renew: true
     certbot_auto_renew_user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
