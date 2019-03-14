@@ -6,6 +6,7 @@
   roles:
     - ansible-role-certbot-master
     - nginx
+    - jenkins.autoinstall
 # Vars
   vars:
     certbot_auto_renew: true
