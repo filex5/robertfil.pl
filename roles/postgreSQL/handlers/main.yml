@@ -1,2 +1,7 @@
 ---
 # handlers file for postgreSQL
+- name: Restart bazy PostgreSQL
+  service:
+   name: postgresql
+   state: restarted
+  become: true
