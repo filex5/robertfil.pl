@@ -1,0 +1,52 @@
+---
+# tasks file for postgreSQL
+- name: Instalacja pakietow
+  apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
+  become: true
+  with_items:
+    - libpq-dev
+    - postgresql
+    - python-psycopq2
+- name: Kopiowanie pliku konfiguracyjnego
+  copy:
+    src: postgresql.conf 
+    dest: /etc/postgresql/9.3/main/postgesql.conf
+    owner: postgres
+    group: postgres
+    mode: 0644
+  become: true
+  notify: Restart bazy PostgreSQL
+- name: Kopiowanie pliku konfiguracyjnego uwierzytelniania klienta
+  copy:
+    src: pg_hba.conf
+    dest: /etc/postgresql/9.3/main/pq_hba.conf
+    owner: postgres
+    group: postgres
+    mode: 0640
+  become: true
+  notify: Restart bazy PostgreSQL
+- name: Ustawienia Regionalne
+  loclale_gen: name={{ locale}}
+  become: true
+- name: Zdefiniowanie użytkownika
+  postgresql_user:
+    name: "{{ database_user }}"
+    password: "{{ db_pass }}"
+  become: true
+  become_user: postgres
+- name: Utworzenie bazy danych
+  postgresql_db:
+    name: "{{ database_name }}"
+    owner: "{{ database_user }}"
+    encoding: UTF8
+    lc_type: "{{ locale }}"
+    lc_collate: "{{ locale }}"
+    template: template0
+  become: true
+  become_user: postgres
+  
+
+
+
+
+    
